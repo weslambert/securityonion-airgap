@@ -55,12 +55,12 @@ if [ $REMOVE_EXISTING_IMAGES -eq 1 ]; then
     for image in $IMAGES; do
         docker rmi $image
     done
-
-    # Pull registry container
-    docker pull registry
 fi
 
+# Pull registry container
+docker pull registry
+
 # Pull new images
-#for image in $IMAGES; do
-#    docker pull $image
-#done
+for image in $IMAGES; do
+    docker pull $image
+done
