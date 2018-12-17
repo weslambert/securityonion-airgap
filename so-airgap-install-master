@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGEDIR="/opt/airgap/transfer"
+IMAGEDIR="/opt/airgap/load"
 
 # Clone repo
 git clone https://github.com/weslambert/securityonion-airgap.git /opt/airgap/src/

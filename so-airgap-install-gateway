@@ -10,4 +10,4 @@ cp -av /opt/airgap/src/registry/so-docker* /usr/sbin && chmod +x /usr/sbin/so-do
 /usr/sbin/so-docker-pull -r
 
 # Save Docker images
-/usr/sbin/so-docker-save -p /opt/airgap/transfer
+/usr/sbin/so-docker-save -p /opt/airgap/save

@@ -59,7 +59,7 @@ if [ "$SERVER" == 1 ]; then
 
     elif docker images | grep -q 'registry'; then
         # Start registry
-        docker run -d --restart=always -p 127.0.0.01:5000:5000 --name so-registry registry:2
+        /usr/sbin/so-registry-start
 
         # Push containers
         . /usr/sbin/so-elastic-common
