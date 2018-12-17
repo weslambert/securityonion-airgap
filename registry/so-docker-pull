@@ -57,7 +57,7 @@ if [ $REMOVE_EXISTING_IMAGES -eq 1 ]; then
     done
 
     # Pull registry container
-    docker pull registry:2
+    docker pull registry
 fi
 
 # Pull new images

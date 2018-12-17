@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Clone repo
+git clone https://github.com/weslambert/securityonion-airgap.git /opt/airgap
+
+# Copy over Registry scripts and make them executable
+cp -av /opt/airgap/registry/so-registry* /usr/sbin && chmod +x /usr/sbin/so-registry*
+cp /opt/airgap/etc/securityonion-ag.conf /etc/nsm/securityonion-ag.conf
+
+# Run Registry install
+/usr/sbin/so-registry-configure

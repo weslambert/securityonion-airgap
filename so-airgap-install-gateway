@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Clone repo
+git clone https://github.com/weslambert/securityonion-airgap.git /opt/airgap
+
+# Copy over Docker scripts and make them executable
+cp -av /opt/airgap/registry/so-docker* /usr/sbin && chmod +x /usr/sbin/so-docker-*
+
+# Remove existing Docker images and pull new ones
+/usr/sbin/so-docker-pull -r
+
+# Save Docker images
+/usr/sbin/so-docker-save -p /opt/airgap/transfer
