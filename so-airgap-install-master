@@ -5,6 +5,7 @@ git clone https://github.com/weslambert/securityonion-airgap.git /opt/airgap
 
 # Copy over Registry scripts and make them executable
 cp -av /opt/airgap/registry/so-registry* /usr/sbin && chmod +x /usr/sbin/so-registry*
+cp /opt/airgap/registry/so-docker-load /usr/sbin/so-docker-load && chmod +x /usr/sbin/so-docker-load 
 cp /opt/airgap/etc/securityonion-ag.conf /etc/nsm/securityonion-ag.conf
 
 # Load Docker 
