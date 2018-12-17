@@ -1,5 +1,7 @@
 #!/bin/bash
 
+IMAGEDIR="/opt/airgap/transfer"
+
 # Clone repo
 git clone https://github.com/weslambert/securityonion-airgap.git /opt/airgap
 
@@ -8,8 +10,8 @@ cp -av /opt/airgap/registry/so-registry* /usr/sbin && chmod +x /usr/sbin/so-regi
 cp /opt/airgap/registry/so-docker-load /usr/sbin/so-docker-load && chmod +x /usr/sbin/so-docker-load 
 cp /opt/airgap/etc/securityonion-ag.conf /etc/nsm/securityonion-ag.conf
 
-# Load Docker 
-
+# Load Docker images 
+/usr/sbin/so-docker-load -p $IMAGEDIR -l /var/log/so-docker-load.log
 
 # Run Registry install
 /usr/sbin/so-registry-configure
