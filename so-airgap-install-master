@@ -7,5 +7,8 @@ git clone https://github.com/weslambert/securityonion-airgap.git /opt/airgap
 cp -av /opt/airgap/registry/so-registry* /usr/sbin && chmod +x /usr/sbin/so-registry*
 cp /opt/airgap/etc/securityonion-ag.conf /etc/nsm/securityonion-ag.conf
 
+# Load Docker 
+
+
 # Run Registry install
 /usr/sbin/so-registry-configure
