@@ -39,6 +39,9 @@ if [ "$SERVER" == 1 ]; then
     
     service docker start
 
+    # Load Docker images
+    /usr/sbin/so-docker-load -p /opt/airgap/load -l /var/log/so-docker-load.log
+
     # Remove old containers/images and get new ones from our local registry
     . /usr/sbin/so-elastic-common
     for image in $(docker images | grep $DOCKERHUB | awk '{ print $1 }'); do
