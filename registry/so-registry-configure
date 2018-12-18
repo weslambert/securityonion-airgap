@@ -47,6 +47,7 @@ if [ "$SERVER" == 1 ]; then
     done
 
     # Load Docker images
+    echo "Loading Docker images...this may take a minute..."
     /usr/sbin/so-docker-load -p /opt/airgap/load -l /var/log/so-docker-load.log
 
     if [ "$OFFLINE" == 0 ]; then
