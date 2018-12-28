@@ -4,16 +4,59 @@
 
 CONFIG_DIR=/etc/docker
 
-echo
-echo -e "This script will configure a Docker registry for a Security Onion master server,\nand/or a Security Onion sensor to pull images from a master server."
-echo
-echo "You will need to run this script on each machine to configure it."
-echo
-echo "To continue, please type 'Y' and press [ENTER]: "
+SKIP=0
 
-read INPUT
+#########################################
+# Options
+#########################################
+usage()
+{
+cat <<EOF
+Security Onion Registry Configure
+  Options:
+  -h         This message
+  -l         Path for logfile
+  -p         Path to from which to load Docker images
 
-if [ "$INPUT" != "Y" ] ; then exit 0; fi
+EOF
+}
+
+while getopts "hyon" OPTION
+do
+        case $OPTION in
+                h)
+                        usage
+                        exit 0
+                        ;;
+                o)
+                        OFFLINE=0
+                        ;;
+                
+                n)
+                        OFFLINE=1
+                        ;;
+                y)
+                        SKIP=1
+                        ;;
+                *)
+                        usage
+                        exit 0
+                        ;;
+        esac
+done
+
+if [ $SKIP -ne 1 ]; then
+    echo
+    echo -e "This script will configure a Docker registry for a Security Onion master server,\nand/or a Security Onion sensor to pull images from a master server."
+    echo
+    echo "You will need to run this script on each machine to configure it."
+    echo
+    echo "To continue, please type 'Y' and press [ENTER]: "
+
+    read INPUT
+
+    if [ "$INPUT" != "Y" ] ; then exit 0; fi
+fi
 
 # Sensor or Server?
 if [ -f /root/.ssh/securityonion_ssh.conf ]; then
@@ -24,12 +67,13 @@ fi
 
 if [ "$SERVER" == 1 ]; then
 
-    echo "Does the master server have internet access? [Y/N]"
+    if [ $SKIP -ne 1 ]; then
+      echo "Does the master server have internet access? [Y/N]"
     
-    read OFFLINE
+      read OFFLINE
     
-    if [ "$OFFLINE" != "N" ] ; then OFFLINE=0; fi
-
+      if [ "$OFFLINE" != "N" ] ; then OFFLINE=0; fi
+    fi
     so-elastic-stop
     service docker stop
     
