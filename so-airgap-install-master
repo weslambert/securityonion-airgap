@@ -8,4 +8,4 @@ cp /opt/airgap/src/registry/so-docker-load /usr/sbin/so-docker-load && chmod +x 
 cp /opt/airgap/src/etc/securityonion-ag.conf /etc/nsm/securityonion-ag.conf
 
 # Run Registry install
-/usr/sbin/so-registry-configure
+/usr/sbin/so-registry-configure -y -n 
